@@ -9,7 +9,15 @@ const { boxes, number, create, destroy } = {
 	destroy: document.querySelector("[data-destroy]"),
 };
 
+function destroyEl() {
+	boxes.innerHTML = "";
+}
+
 function createBoxes(amount) {
+	let array = [];
+
+	destroyEl();
+
 	for (let index = 0; index < amount; index += 1) {
 		if (amount > Number(number.max)) {
 			return alert(`Введено значеня ${amount} більше значення ${Number(number.max)}`);
@@ -18,14 +26,11 @@ function createBoxes(amount) {
 		element.style.background = getRandomHexColor();
 		element.style.width = 30 + index * 10 + "px";
 		element.style.height = 30 + index * 10 + "px";
-		console.log(index * 10);
-
-		boxes.append(element);
+		array.push(element);
 	}
+	boxes.append(...array);
 }
 
 create.addEventListener("click", () => createBoxes(Number(number.value)));
 
-destroy.addEventListener("click", () => {
-	boxes.innerHTML = "";
-});
+destroy.addEventListener("click", destroyEl);
