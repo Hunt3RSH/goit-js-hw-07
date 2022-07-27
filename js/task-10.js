@@ -10,7 +10,7 @@ const { boxes, number, create, destroy } = {
 };
 
 function createBoxes(amount) {
-	for (let index = 0; index <= amount; index += 1) {
+	for (let index = 0; index < amount; index += 1) {
 		if (amount > Number(number.max)) {
 			return alert(`Введено значеня ${amount} більше значення ${Number(number.max)}`);
 		}
