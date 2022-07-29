@@ -18,10 +18,16 @@ const gallery = document.querySelector(".gallery");
 
 gallery.insertAdjacentHTML("afterbegin", markup.join(""));
 
-gallery.addEventListener("click", () => {
-	const instance = basicLightbox.create(`
-    <img src="${event.target.dataset.source}" width="800" height="600">
+gallery.addEventListener("click", e => {
+	const instance = basicLightbox.create(`a
+    <img src="${e.target.dataset.source}" width="800" height="600">
 `);
 
 	instance.show();
+
+	gallery.addEventListener("keyup", e => {
+		if (e.code === "Escape") {
+			instance.close();
+		}
+	});
 });
